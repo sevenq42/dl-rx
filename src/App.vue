@@ -8,7 +8,7 @@
 
 <!--    <button v-stream:click="share$">SHARE STREAM</button>-->
 
-    in parent App: {{useServiceStream}}
+<!--    in parent App: {{useServiceStream}}-->
   </div>
 </template>
 

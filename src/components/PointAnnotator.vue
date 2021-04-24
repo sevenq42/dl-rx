@@ -36,7 +36,9 @@
             if(this.useService){
                 const vm = this.serviceStream$
                 // const existingAnno = this.$subscriptions.annotations
-                this.click$.subscribe((evtData: {event: MouseEvent}) => {
+                this.click$.pipe(
+                    takeUntil(this.cancel$)
+                ).subscribe((evtData: {event: MouseEvent}) => {
                     const {event} = evtData
                     vm.next([
                         // ...(vm ?? []),
