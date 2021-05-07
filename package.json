@@ -10,7 +10,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
-    "vue-composition-api": "^0.0.1",
+    "@vue/composition-api": "^1.0.0-rc.8",
     "rxjs": "^6.6.7",
     "vue-rx": "^6.2.0",
     "uuid": "^8.3.2"

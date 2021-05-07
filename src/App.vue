@@ -1,36 +1,32 @@
 <template>
   <div id="app">
-    <point-annotator :svg-height="400" :svg-width="800" :use-service="false"/>
-    <point-annotator :svg-height="400" :svg-width="800" :use-service="false"/>
+    <h2> LOCAL </h2>
+    <local-point-annotator :svg-height="400" :svg-width="800"/>
+    <local-point-annotator :svg-height="400" :svg-width="800"/>
+<hr>
 
-    <point-annotator :svg-height="400" :svg-width="800" :use-service="true"/>
-    <point-annotator :svg-height="400" :svg-width="800" :use-service="true"/>
+    <h2> SHARED</h2>
 
-<!--    <button v-stream:click="share$">SHARE STREAM</button>-->
+    <shared-point-annotator :svg-height="400" :svg-width="800"/>
+    <shared-point-annotator :svg-height="400" :svg-width="800"/>
 
-<!--    in parent App: {{useServiceStream}}-->
   </div>
 </template>
 
 <script lang="ts">
     import Vue from 'vue';
-    import PointAnnotator from './components/PointAnnotator.vue'
-    import {Subject} from "rxjs";
-    import {map, take} from "rxjs/operators";
+    import SharedPointAnnotator from './components/SharedPointAnnotator.vue'
+    import LocalPointAnnotator from './components/LocalPointAnnotator.vue'
 
     export default Vue.extend({
         name: 'App',
         components: {
-            PointAnnotator
+            SharedPointAnnotator,
+            LocalPointAnnotator,
         },
         subscriptions(): any {
-            // this.share$ = new Subject()
 
             return {
-                // useServiceStream: this.share$.pipe(
-                //     map(() => true),
-                //     take(1)
-                // )
             }
         }
     });
