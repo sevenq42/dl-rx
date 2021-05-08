@@ -9,6 +9,12 @@
 
     <shared-point-annotator :svg-height="400" :svg-width="800"/>
     <shared-point-annotator :svg-height="400" :svg-width="800"/>
+<hr>
+
+    <h2> SOCKET</h2>
+
+    <socket-point-annotator :svg-height="400" :svg-width="800"/>
+    <socket-point-annotator :svg-height="400" :svg-width="800"/>
 
   </div>
 </template>
@@ -17,12 +23,14 @@
     import Vue from 'vue';
     import SharedPointAnnotator from './components/SharedPointAnnotator.vue'
     import LocalPointAnnotator from './components/LocalPointAnnotator.vue'
+    import SocketPointAnnotator from "@/components/SocketPointAnnotator.vue";
 
     export default Vue.extend({
         name: 'App',
         components: {
             SharedPointAnnotator,
             LocalPointAnnotator,
+            SocketPointAnnotator,
         },
         subscriptions(): any {
 
