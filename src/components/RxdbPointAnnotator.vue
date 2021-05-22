@@ -38,20 +38,25 @@
         subscriptions (): Observables  {
             // @ts-ignore
             this.load$ = new Subject<{event: MouseEvent, data: Record<string, unknown>}>()
-                .pipe(take(1))
                 .subscribe((value: {event: MouseEvent, data: Record<string, unknown>}) => {
 
-                    // @ts-ignore
-                    const db = this.db
-                    annotationsFromSocket$.subscribe(async annos => {
-                        console.log('got anno from socket:', annos)
-                        await db.annotations.bulkInsert(annos)
                         // @ts-ignore
-                        console.log(`inserted ${annos.length} rows: `)
-                    })
-                    // re-load
-                    annotationsFromSocket$.next('annotations-get')
-                })
+                        const db = this.db
+                        annotationsFromSocket$.subscribe(
+                            async annos => {
+                                console.log('got anno from socket:', annos)
+                                await db.annotations.bulkInsert(annos)
+                                // @ts-ignore
+                                console.log(`inserted ${annos.length} rows: `)
+                            },
+                            error => { console.warn(error)},
+                            () => { console.log('completed inserting')}
+                        )
+                        // re-load
+                        annotationsFromSocket$.next('annotations-get')
+                    },
+                    error => { console.warn(error)},
+                    () => { console.log('completed loading')})
 
             return {}
         },

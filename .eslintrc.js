@@ -4,9 +4,9 @@ module.exports = {
     node: true,
   },
   extends: [
-    // 'plugin:vue/essential',
+    'plugin:vue/essential',
     // '@vue/airbnb',
-    // '@vue/typescript/recommended',
+    '@vue/typescript/recommended',
   ],
   parserOptions: {
     ecmaVersion: 2020,
