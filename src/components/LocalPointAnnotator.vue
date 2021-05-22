@@ -28,23 +28,28 @@
     import {map, scan, startWith, takeUntil} from 'rxjs/operators'
     import {Annotation} from "@/model/Annotation";
     import {v4 as uuid} from 'uuid'
+    import {Observables} from "vue-rx";
 
     export default {
         name: "LocalPointAnnotator",
 
-        subscriptions (): unknown {
+        subscriptions (): Observables {
             // declare the receiving Subjects
+            // @ts-ignore
             this.click$ = new Subject<{event: MouseEvent, data: Record<string, unknown>}>()
+            // @ts-ignore
             this.cancel$ = new Subject<{event: MouseEvent, data: Record<string, unknown>}>()
 
             // annotationsWithInitData.subscribe(annotations$)
 
             return {
+                // @ts-ignore
                 clicksCount: this.click$.pipe(
                     map(() => 1),
                     startWith(0),
                     scan((total:number, change:number) => total + change)
                 ),
+                // @ts-ignore
                 annotations: this.click$.pipe(
                     map((evtData: { event: MouseEvent }) => {
                         const {event} = evtData
@@ -55,6 +60,7 @@
                             label: 'Label from Click'
                         } as Annotation
                     }),
+                    // @ts-ignore
                     takeUntil(this.cancel$),
                     startWith([]),
                     scan((total: Array<Annotation>, change: Annotation) => {

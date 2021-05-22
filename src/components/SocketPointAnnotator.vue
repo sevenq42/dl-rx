@@ -27,12 +27,15 @@
     import {Subject} from 'rxjs'
     import {startWith, switchMap, takeWhile, tap, toArray} from 'rxjs/operators'
     import {annotationsFromSocket$} from "@/api/SocketService";
+    import {Observables} from "vue-rx";
 
     export default {
         name: "SocketPointAnnotator",
 
-        subscriptions (): unknown {
+        subscriptions (): Observables {
+            // @ts-ignore
             this.load$ = new Subject<{event: MouseEvent, data: Record<string, unknown>}>()
+            // @ts-ignore
             this.load$.subscribe(value => {
                 // re-load
                 annotationsFromSocket$.next('annotations-get')

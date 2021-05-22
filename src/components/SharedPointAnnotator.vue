@@ -29,17 +29,24 @@
     import {Annotation} from "@/model/Annotation";
     import {v4 as uuid} from 'uuid'
     import {annotations$} from "@/api/AnnotationService";
+    import {Observables} from "vue-rx";
 
     export default {
         name: "SharedPointAnnotator",
 
-        subscriptions (): unknown {
+        subscriptions (): Observables {
+            // @ts-ignore
             this.click$ = new Subject<{event: MouseEvent, data: Record<string, unknown>}>()
+            // @ts-ignore
             this.cancel$ = new Subject<{event: MouseEvent, data: Record<string, unknown>}>()
+            // @ts-ignore
             this.serviceStream$ = annotations$
 
+            // @ts-ignore
                 const vm = this.serviceStream$
+            // @ts-ignore
                 this.click$.pipe(
+                    // @ts-ignore
                     takeUntil(this.cancel$)
                 ).subscribe((evtData: {event: MouseEvent}) => {
                     const {event} = evtData
@@ -54,11 +61,13 @@
                 })
 
             return {
+                // @ts-ignore
                 clicksCount: this.click$.pipe(
                     map(() => 1),
                     startWith(0),
                     scan((total:number, change:number) => total + change)
                 ),
+                // @ts-ignore
                 annotations: this.serviceStream$.pipe(takeUntil(this.cancel$))
             }
         },

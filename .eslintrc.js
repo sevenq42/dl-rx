@@ -4,9 +4,9 @@ module.exports = {
     node: true,
   },
   extends: [
-    'plugin:vue/essential',
+    // 'plugin:vue/essential',
     // '@vue/airbnb',
-    '@vue/typescript/recommended',
+    // '@vue/typescript/recommended',
   ],
   parserOptions: {
     ecmaVersion: 2020,
@@ -14,6 +14,7 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'semi': 'off'
+    'semi': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off'
   },
 };

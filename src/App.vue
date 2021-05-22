@@ -15,6 +15,11 @@
 
     <socket-point-annotator :svg-height="400" :svg-width="800"/>
     <socket-point-annotator :svg-height="400" :svg-width="800"/>
+<hr>
+
+    <h2> RXDB</h2>
+
+    <rxdb-point-annotator :svg-height="400" :svg-width="800"/>
 
   </div>
 </template>
@@ -24,6 +29,7 @@
     import SharedPointAnnotator from './components/SharedPointAnnotator.vue'
     import LocalPointAnnotator from './components/LocalPointAnnotator.vue'
     import SocketPointAnnotator from "@/components/SocketPointAnnotator.vue";
+    import RxdbPointAnnotator from "@/components/RxdbPointAnnotator.vue";
 
     export default Vue.extend({
         name: 'App',
@@ -31,11 +37,7 @@
             SharedPointAnnotator,
             LocalPointAnnotator,
             SocketPointAnnotator,
-        },
-        subscriptions(): any {
-
-            return {
-            }
+            RxdbPointAnnotator
         }
     });
 </script>

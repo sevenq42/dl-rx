@@ -1,4 +1,4 @@
-import {Subject} from "rxjs";
+import {Subject, ReplaySubject, merge} from "rxjs";
 import {Annotation} from "@/model/Annotation";
 import {startWith} from "rxjs/operators";
 import {v4 as uuid} from 'uuid'
@@ -28,9 +28,8 @@ const initialData$ = new Subject()
   ])
 ) as Subject<Annotation[]>
 
-const annotations$: Subject<Annotation[]> = new Subject<Annotation[]>()
-
-annotations$.subscribe(initialData$)
+const annotations$: ReplaySubject<Annotation[]> = new ReplaySubject<Annotation[]>()
+initialData$.subscribe(annotations$)
 
 export {
   annotations$
